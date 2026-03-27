@@ -844,7 +844,7 @@ function initMusic() {
      3. Place it in the same folder as index.html
      4. The button below will play it automatically.
      ─────────────────────────────────────────────── */
-  const audio = new Audio('interstellar_experience.mp3');
+  const audio = new Audio('interstellar.mp3');
   audio.loop   = true;
   audio.volume = 0;  // Start silent; fade in
 
