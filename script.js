@@ -1087,3 +1087,4 @@ Keep answers short (2-4 sentences). If unrelated question, redirect to Priyanshu
     return data.candidates?.[0]?.content?.parts?.[0]?.text?.trim()
            || "I couldn't think of a reply 🌸";
   }
+}
