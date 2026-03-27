@@ -1035,19 +1035,17 @@ function initRose() {
   }
 
   // ── Call Claude API with Priyanshu's context ─────
-// ── 🔑 APNA OPENAI API KEY YAHAN PASTE KARO ─────
-const OPENAI_API_KEY = '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';
+// 🔑 Apni Gemini API Key yahan rakho (config.js mein rakhna safer hai)
+const GEMINI_API_KEY = 'AIzaSyAy0YtugSEIRxlqTcEBhJorRkKjzPaUxqU';
 
 async function askRose(userMessage) {
 
-    // Agar key nahi daali toh friendly message
-    if (OPENAI_API_KEY === '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') {
-      return "🔑 OpenAI API key missing hai! script.js mein OPENAI_API_KEY wali line mein apni key paste karo.";
-    }
+  if (GEMINI_API_KEY === 'AIzaSyAy0YtugSEIRxlqTcEBhJorRkKjzPaUxqU') {
+    return "🔑 Gemini API key missing hai! GEMINI_API_KEY mein apni key paste karo.";
+  }
 
-    const systemPrompt = `You are Rose 🌹, a friendly AI assistant on Priyanshu Kumar Choudhary's portfolio.
+  const systemPrompt = `You are Rose 🌹, a friendly AI assistant on Priyanshu Kumar Choudhary's portfolio.
 Your personality: Warm, encouraging, slightly playful. Use light emojis.
-
 About Priyanshu:
 - BCA Final Year, Sambalpur University, Odisha (2022-2025)
 - Frontend Developer | Part-time Cricketer 🏏
@@ -1057,34 +1055,37 @@ About Priyanshu:
 - Open to: Jobs, Internships, Collaborations
 - Instagram: @priyanshu__74
 - Available for work: YES
-
 Keep answers short (2-4 sentences). If unrelated question, redirect to Priyanshu.`;
 
-    // ── OpenAI API Call ──
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+  // Gemini API Call
+  const response = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
+    {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${OPENAI_API_KEY}`
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'gpt-4o-mini',
-        max_tokens: 300,
-        temperature: 0.75,
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user',   content: userMessage }
-        ]
+        contents: [
+          {
+            parts: [
+              { text: systemPrompt + '\n\nUser: ' + userMessage }
+            ]
+          }
+        ],
+        generationConfig: {
+          maxOutputTokens: 300,
+          temperature: 0.75
+        }
       })
-    });
-
-    if (!response.ok) {
-      console.error('OpenAI Error:', await response.json());
-      throw new Error('API error');
     }
+  );
 
-    const data = await response.json();
-    return data.choices?.[0]?.message?.content?.trim()
-           || "I couldn't think of a reply 🌸";
+  if (!response.ok) {
+    console.error('Gemini Error:', await response.json());
+    throw new Error('API error');
   }
+
+  const data = await response.json();
+  return data.candidates?.[0]?.content?.parts?.[0]?.text?.trim()
+         || "I couldn't think of a reply 🌸";
+}
 }
