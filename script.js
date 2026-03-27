@@ -1036,15 +1036,16 @@ function initRose() {
 
   // ── Call Claude API with Priyanshu's context ─────
 // 🔑 Apni Gemini API Key yahan rakho (config.js mein rakhna safer hai)
-const GEMINI_API_KEY = 'AIzaSyAqDNjNCcnuPqjHJ6GP5WDuGcAcqL1Z1ZM';
+// ── Gemini API with Priyanshu's context ─────
+  const GEMINI_API_KEY = 'AIzaSyCLrQS1DnGVEL0rHfmkjybq6HUFTN4y-Yg'; // 🔑 Nayi key yahan
 
-async function askRose(userMessage) {
+  async function askRose(userMessage) {
 
-  if (GEMINI_API_KEY === 'GEMINI_API_KEY') {
-    return "🔑 Gemini API key missing hai! GEMINI_API_KEY mein apni key paste karo.";
-  }
+    if (GEMINI_API_KEY === 'YOUR_GEMINI_API_KEY_HERE') {
+      return "🔑 Gemini API key missing hai! GEMINI_API_KEY mein apni key paste karo.";
+    }
 
-  const systemPrompt = `You are Rose 🌹, a friendly AI assistant on Priyanshu Kumar Choudhary's portfolio.
+    const systemPrompt = `You are Rose 🌹, a friendly AI assistant on Priyanshu Kumar Choudhary's portfolio.
 Your personality: Warm, encouraging, slightly playful. Use light emojis.
 About Priyanshu:
 - BCA Final Year, Sambalpur University, Odisha (2022-2025)
@@ -1057,35 +1058,30 @@ About Priyanshu:
 - Available for work: YES
 Keep answers short (2-4 sentences). If unrelated question, redirect to Priyanshu.`;
 
-  // Gemini API Call
-  const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
-    {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [
-          {
-            parts: [
-              { text: systemPrompt + '\n\nUser: ' + userMessage }
-            ]
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{
+            parts: [{ text: systemPrompt + '\n\nUser: ' + userMessage }]
+          }],
+          generationConfig: {
+            maxOutputTokens: 300,
+            temperature: 0.75
           }
-        ],
-        generationConfig: {
-          maxOutputTokens: 300,
-          temperature: 0.75
-        }
-      })
+        })
+      }
+    );
+
+    if (!response.ok) {
+      console.error('Gemini Error:', await response.json());
+      throw new Error('API error');
     }
-  );
 
-  if (!response.ok) {
-    console.error('Gemini Error:', await response.json());
-    throw new Error('API error');
+    const data = await response.json();
+    return data.candidates?.[0]?.content?.parts?.[0]?.text?.trim()
+           || "I couldn't think of a reply 🌸";
   }
-
-  const data = await response.json();
-  return data.candidates?.[0]?.content?.parts?.[0]?.text?.trim()
-         || "I couldn't think of a reply 🌸";
-}
 }
