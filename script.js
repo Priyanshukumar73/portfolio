@@ -1035,42 +1035,56 @@ function initRose() {
   }
 
   // ── Call Claude API with Priyanshu's context ─────
-  async function askRose(userMessage) {
-    const systemPrompt = `You are Rose 🌹, a friendly and knowledgeable AI assistant on Priyanshu Kumar Choudhary's portfolio website.
+// ── 🔑 APNA OPENAI API KEY YAHAN PASTE KARO ─────
+const OPENAI_API_KEY = 'YOUR_OPENAI_API_KEY_HERE';
 
-Your personality: Warm, encouraging, professional, slightly playful. Use light emojis occasionally.
+async function askRose(userMessage) {
 
-About Priyanshu Kumar Choudhary:
-- Final-year BCA student at Sambalpur University, Odisha, India (2022–2025)
-- Role: Frontend Developer | Part-time Cricketer 🏏
-- Skills: HTML5 (90%), CSS3 (85%), JavaScript (75%), Bootstrap (80%), Tailwind CSS (72%), Python (80%), SQL (75%), Pandas/NumPy (70%), Machine Learning (65%)
-- Tools: GitHub, Git, Matplotlib, Jupyter, VS Code, scikit-learn, MySQL, Figma
-- Currently Learning: React.js, Advanced Python, Deep Learning, Data Visualization, Cloud Basics
-- Projects: New exciting project coming soon (staying tuned!)
-- Interests: Data Science, ML, Frontend Dev, Cricket
-- Open to: Full-time roles, internships, collaborations
-- Location: Sambalpur, Odisha, India
+    // Agar key nahi daali toh friendly message
+    if (OPENAI_API_KEY === 'YOUR_OPENAI_API_KEY_HERE') {
+      return "🔑 OpenAI API key missing hai! script.js mein OPENAI_API_KEY wali line mein apni key paste karo.";
+    }
+
+    const systemPrompt = `You are Rose 🌹, a friendly AI assistant on Priyanshu Kumar Choudhary's portfolio.
+Your personality: Warm, encouraging, slightly playful. Use light emojis.
+
+About Priyanshu:
+- BCA Final Year, Sambalpur University, Odisha (2022-2025)
+- Frontend Developer | Part-time Cricketer 🏏
+- Skills: HTML5 (90%), CSS3 (85%), JavaScript (75%), Bootstrap (80%), Tailwind (72%), Python (80%), SQL (75%), ML (65%)
+- Tools: GitHub, VS Code, Jupyter, scikit-learn, MySQL, Figma
+- Learning: React.js, Deep Learning, Cloud Basics
+- Open to: Jobs, Internships, Collaborations
 - Instagram: @priyanshu__74
 - Available for work: YES
 
-Answer questions about Priyanshu naturally and helpfully. Keep responses concise (2-4 sentences max). If asked something unrelated to Priyanshu, gently redirect to topics about him.`;
+Keep answers short (2-4 sentences). If unrelated question, redirect to Priyanshu.`;
 
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    // ── OpenAI API Call ──
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${OPENAI_API_KEY}`
+      },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'gpt-4o-mini',
         max_tokens: 300,
-        system: systemPrompt,
-        messages: [{ role: 'user', content: userMessage }]
+        temperature: 0.75,
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user',   content: userMessage }
+        ]
       })
     });
 
-    if (!response.ok) throw new Error('API error');
+    if (!response.ok) {
+      console.error('OpenAI Error:', await response.json());
+      throw new Error('API error');
+    }
 
     const data = await response.json();
-    // Extract text from content blocks
-    const textBlock = data.content?.find(b => b.type === 'text');
-    return textBlock?.text || "I couldn't think of a reply just now 🌸";
+    return data.choices?.[0]?.message?.content?.trim()
+           || "I couldn't think of a reply 🌸";
   }
 }
