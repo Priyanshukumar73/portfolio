@@ -1036,12 +1036,12 @@ function initRose() {
 
   // ── Call Claude API with Priyanshu's context ─────
 // ── 🔑 APNA OPENAI API KEY YAHAN PASTE KARO ─────
-const OPENAI_API_KEY = 'YOUR_OPENAI_API_KEY_HERE';
+const OPENAI_API_KEY = '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';
 
 async function askRose(userMessage) {
 
     // Agar key nahi daali toh friendly message
-    if (OPENAI_API_KEY === 'YOUR_OPENAI_API_KEY_HERE') {
+    if (OPENAI_API_KEY === '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') {
       return "🔑 OpenAI API key missing hai! script.js mein OPENAI_API_KEY wali line mein apni key paste karo.";
     }
 
