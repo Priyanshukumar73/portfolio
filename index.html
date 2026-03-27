@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="description" content="Priyanshu Kumar Choudhary – Frontend Developer & Data Scientist. BCA Sambalpur University 2025." />
+  <meta name="keywords" content="Priyanshu Kumar Choudhary, Frontend Developer, Data Scientist, Web Developer, Machine Learning, AI, JavaScript, Python, SQL" />
+  <meta name="author" content="Priyanshu Kumar Choudhary" />
+  <title>Priyanshu Kumar Choudhary | Frontend Developer & Data Scientist</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ATS Hidden (for recruiter bots) -->
+<div class="ats-hidden" aria-hidden="true">
+  Priyanshu Kumar Choudhary. Frontend Developer. Data Scientist. Web Developer. Fresher. BCA Sambalpur University Odisha 2022-2025.
+  Skills: HTML5 CSS3 JavaScript Bootstrap Tailwind CSS Python SQL Machine Learning Artificial Intelligence.
+  Entry level fresher open to work Frontend Development Data Science Web Development India 2025.
+</div>
+
+<!-- ══════════════════════════════════════════════
+     LOADING SCREEN
+══════════════════════════════════════════════ -->
+<div id="loader">
+  <canvas id="loaderCanvas"></canvas>
+  <div class="loader-center">
+    <div class="solar-system-loader">
+      <div class="sun-loader"></div>
+      <div class="orbit-loader orbit-l1"><div class="planet-loader pl1"></div></div>
+      <div class="orbit-loader orbit-l2"><div class="planet-loader pl2"></div></div>
+      <div class="orbit-loader orbit-l3"><div class="planet-loader pl3"></div></div>
+    </div>
+    <p class="loader-text" id="loaderText">INITIALIZING UNIVERSE...</p>
+    <div class="loader-bar-wrap"><div class="loader-bar-fill" id="loaderBar"></div></div>
+    <p class="loader-percent" id="loaderPercent">0%</p>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     THEME TOGGLE
+══════════════════════════════════════════════ -->
+<button id="themeToggle" aria-label="Toggle light/dark mode">
+  <span class="theme-icon dark-icon">🌙</span>
+  <span class="theme-icon light-icon">🌞</span>
+</button>
+
+<!-- ══════════════════════════════════════════════
+     MUSIC TOGGLE
+══════════════════════════════════════════════ -->
+<button id="musicToggle" aria-label="Toggle background music" title="Play Interstellar Music">
+  <i class="fas fa-music" id="musicIcon"></i>
+</button>
+
+<!-- Custom Cursor (desktop only) -->
+<div id="cursorGlow"></div>
+<div id="cursorDot"></div>
+
+<!-- ══════════════════════════════════════════════
+     UNIVERSE BACKGROUND CANVAS
+══════════════════════════════════════════════ -->
+<canvas id="spaceCanvas"></canvas>
+<!-- Light mode: n8n-style network canvas -->
+<canvas id="n8nCanvas"></canvas>
+<!-- Light mode sky overlay -->
+<div id="skyOverlay"></div>
+<!-- Explosion canvas -->
+<canvas id="explosionCanvas"></canvas>
+
+<!-- ══════════════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-container">
+    <a href="#hero" class="nav-logo">Priyanshu<span class="neon">.</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="#hero">Start</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#journey">Journey</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button id="hamburger" class="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#hero"     onclick="closeMobileNav()">● Start Node</a>
+    <a href="#about"    onclick="closeMobileNav()">● About Node</a>
+    <a href="#skills"   onclick="closeMobileNav()">● Skills Node</a>
+    <a href="#projects" onclick="closeMobileNav()">● Projects Node</a>
+    <a href="#journey"  onclick="closeMobileNav()">● Journey Node</a>
+    <a href="#contact"  onclick="closeMobileNav()">● Contact Node</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════════════ -->
+<main id="pipeline">
+  <svg id="connectorSvg" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+
+  <!-- ══ NODE 01 — HERO ══ -->
+  <section id="hero" class="node-section" aria-label="Introduction">
+    <div class="node-pill reveal">NODE_01 // START</div>
+
+    <div class="hero-layout">
+      <!-- Profile Photo — using your actual photo! -->
+      <div class="photo-wrapper reveal">
+        <div class="photo-glow"></div>
+        <div class="photo-card">
+          <img src="profile.webp"
+               alt="Priyanshu Kumar Choudhary – Profile Photo"
+               loading="eager" />
+          <div class="photo-overlay"></div>
+          <div class="photo-corner tl"></div>
+          <div class="photo-corner tr"></div>
+          <div class="photo-corner bl"></div>
+          <div class="photo-corner br"></div>
+        </div>
+        <div class="availability-badge">
+          <span class="avail-dot"></span>
+          Available for Work
+        </div>
+      </div>
+
+      <!-- Hero Text -->
+      <div class="hero-text">
+        <div class="mono neon small-tag reveal">// HELLO, WORLD</div>
+        <h1 class="hero-name reveal">
+          <span>Priyanshu</span>
+          <span>Kumar</span>
+          <span class="neon">Choudhary</span>
+        </h1>
+        <div class="typing-wrap reveal">
+          <span class="typing-prefix">→ </span>
+          <span id="typingEl" class="typing-text"></span>
+          <span class="cursor-blink">|</span>
+        </div>
+        <p class="hero-desc reveal">
+          BCA Final Year · Sambalpur University · Odisha, India<br/>
+          Turning data into insights &amp; pixels into experiences.
+        </p>
+        <div class="cta-row reveal">
+          <a href="#projects" class="btn-primary">
+            <i class="fas fa-rocket"></i> View Projects
+          </a>
+          <a href="#contact" class="btn-ghost">
+            <i class="fas fa-satellite-dish"></i> Contact Me
+          </a>
+          <a href="#" class="btn-ghost" download>
+            <i class="fas fa-download"></i> Resume
+          </a>
+        </div>
+        <div class="stats-row reveal">
+          <div class="stat-item">
+            <div class="stat-num neon">3+</div>
+            <div class="stat-label">Years Learning</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-num neon">10+</div>
+            <div class="stat-label">Projects Built</div>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <div class="stat-num neon">∞</div>
+            <div class="stat-label">Curiosity</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="out-dot" id="out-hero"></div>
+  </section>
+
+  <!-- ══ NODE 02 — ABOUT ══ -->
+  <section id="about" class="node-section" aria-label="About Me">
+    <div class="in-dot" id="in-about"></div>
+    <div class="node-pill reveal">NODE_02 // ABOUT</div>
+
+    <div class="section-head">
+      <h2 class="reveal">About <span class="neon">Me</span></h2>
+      <div class="head-line reveal"></div>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-bio glass reveal">
+        <div class="mono neon small-tag">// WHO AM I</div>
+        <p>I'm <strong>Priyanshu Kumar Choudhary</strong>, a final-year BCA student at Sambalpur University, Odisha. I love blending creativity with code — whether that's wrangling datasets or crafting pixel-perfect UIs.</p>
+        <p>By day I'm chasing patterns in data; by evening I'm probably on a cricket pitch. Life's best when you're constantly learning.</p>
+        <div class="bio-tags">
+          <span>🎓 BCA · Sambalpur University</span>
+          <span>📍 Odisha, India</span>
+          <span>🏏 Part-time Cricketer</span>
+          <span>🤖 ML Enthusiast</span>
+        </div>
+      </div>
+
+      <div class="about-cards">
+        <div class="about-card glass reveal">
+          <i class="fas fa-brain neon"></i>
+          <h3>Machine Learning</h3>
+          <p>Supervised, unsupervised models. scikit-learn, pandas, numpy. Always experimenting.</p>
+        </div>
+        <div class="about-card glass reveal">
+          <i class="fas fa-code neon"></i>
+          <h3>Web Development</h3>
+          <p>HTML, CSS, JavaScript, Bootstrap, Tailwind. I build things people love to use.</p>
+        </div>
+        <div class="about-card glass reveal">
+          <i class="fas fa-database neon"></i>
+          <h3>Data Science</h3>
+          <p>SQL, Python, data wrangling. Turning messy datasets into clean stories.</p>
+        </div>
+        <div class="about-card glass reveal">
+          <i class="fas fa-cricket-bat-ball neon"></i>
+          <h3>Cricket &amp; Balance</h3>
+          <p>Best thinking happens off-screen. Sport keeps the mind sharp and grounded.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="out-dot" id="out-about"></div>
+  </section>
+
+  <!-- ══ NODE 03 — SKILLS ══ -->
+  <section id="skills" class="node-section" aria-label="Skills">
+    <div class="in-dot" id="in-skills"></div>
+    <div class="node-pill reveal">NODE_03 // SKILLS</div>
+
+    <div class="section-head">
+      <h2 class="reveal">Tech <span class="neon">Stack</span></h2>
+      <div class="head-line reveal"></div>
+      <p class="section-sub reveal">Tools and technologies I work with</p>
+    </div>
+
+    <div class="skills-container">
+      <!-- Frontend -->
+      <div class="skill-group glass reveal">
+        <div class="sg-header">
+          <i class="fas fa-palette neon"></i>
+          <h3>Frontend</h3>
+        </div>
+        <div class="skill-row">
+          <div class="sk-item">
+            <div class="sk-top"><span>HTML5</span><span class="sk-pct">90%</span></div>
+            <div class="sk-bar"><div class="sk-fill" data-w="90"></div></div>
+          </div>
+          <div class="sk-item">
+            <div class="sk-top"><span>CSS3</span><span class="sk-pct">85%</span></div>
+            <div class="sk-bar"><div class="sk-fill" data-w="85"></div></div>
+          </div>
+          <div class="sk-item">
+            <div class="sk-top"><span>JavaScript</span><span class="sk-pct">75%</span></div>
+            <div class="sk-bar"><div class="sk-fill" data-w="75"></div></div>
+          </div>
+          <div class="sk-item">
+            <div class="sk-top"><span>Bootstrap</span><span class="sk-pct">80%</span></div>
+            <div class="sk-bar"><div class="sk-fill" data-w="80"></div></div>
+          </div>
+          <div class="sk-item">
+            <div class="sk-top"><span>Tailwind CSS</span><span class="sk-pct">72%</span></div>
+            <div class="sk-bar"><div class="sk-fill" data-w="72"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 🌱 LEARNING SECTION (renamed from Backend) -->
+      <div class="skill-group glass reveal">
+        <div class="sg-header">
+          <i class="fas fa-seedling neon"></i>
+          <h3>Learning 🌱</h3>
+        </div>
+        <div class="learning-chips">
+          <div class="learn-chip">
+            <div class="learn-icon">⚛️</div>
+            <div class="learn-info">
+              <span class="learn-name">React.js</span>
+              <span class="learn-status">Exploring</span>
+            </div>
+            <div class="learn-bar"><div class="learn-fill" style="--lw:40%"></div></div>
+          </div>
+          <div class="learn-chip">
+            <div class="learn-icon">🐍</div>
+            <div class="learn-info">
+              <span class="learn-name">Python (Advanced)</span>
+              <span class="learn-status">In Progress</span>
+            </div>
+            <div class="learn-bar"><div class="learn-fill" style="--lw:65%"></div></div>
+          </div>
+          <div class="learn-chip">
+            <div class="learn-icon">🧠</div>
+            <div class="learn-info">
+              <span class="learn-name">Deep Learning</span>
+              <span class="learn-status">Beginner</span>
+            </div>
+            <div class="learn-bar"><div class="learn-fill" style="--lw:30%"></div></div>
+          </div>
+          <div class="learn-chip">
+            <div class="learn-icon">📊</div>
+            <div class="learn-info">
+              <span class="learn-name">Data Visualization</span>
+              <span class="learn-status">Exploring</span>
+            </div>
+            <div class="learn-bar"><div class="learn-fill" style="--lw:50%"></div></div>
+          </div>
+          <div class="learn-chip">
+            <div class="learn-icon">☁️</div>
+            <div class="learn-info">
+              <span class="learn-name">Cloud Basics</span>
+              <span class="learn-status">Just started</span>
+            </div>
+            <div class="learn-bar"><div class="learn-fill" style="--lw:20%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tools -->
+      <div class="skill-group glass reveal">
+        <div class="sg-header">
+          <i class="fas fa-tools neon"></i>
+          <h3>Tools &amp; Platforms</h3>
+        </div>
+        <div class="tools-grid">
+          <div class="tool-chip"><i class="fab fa-github"></i> GitHub</div>
+          <div class="tool-chip"><i class="fas fa-code-branch"></i> Git</div>
+          <div class="tool-chip"><i class="fas fa-chart-bar"></i> Matplotlib</div>
+          <div class="tool-chip"><i class="fas fa-flask"></i> Jupyter</div>
+          <div class="tool-chip"><i class="fas fa-terminal"></i> VS Code</div>
+          <div class="tool-chip"><i class="fab fa-python"></i> scikit-learn</div>
+          <div class="tool-chip"><i class="fas fa-database"></i> MySQL</div>
+          <div class="tool-chip"><i class="fab fa-figma"></i> Figma</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="out-dot" id="out-skills"></div>
+  </section>
+
+  <!-- ══ NODE 04 — PROJECTS ══ -->
+  <section id="projects" class="node-section" aria-label="Projects">
+    <div class="in-dot" id="in-projects"></div>
+    <div class="node-pill reveal">NODE_04 // PROJECTS</div>
+
+    <div class="section-head">
+      <h2 class="reveal">Featured <span class="neon">Projects</span></h2>
+      <div class="head-line reveal"></div>
+      <p class="section-sub reveal">Something big is being built...</p>
+    </div>
+
+    <div class="projects-grid projects-center">
+      <!-- Only ONE card: Coming Soon -->
+      <div class="proj-card glass reveal coming-soon-card coming-soon-big">
+        <div class="pulse-ring"></div>
+        <div class="coming-orbit">
+          <div class="coming-sun"></div>
+          <div class="coming-planet cp1"></div>
+          <div class="coming-planet cp2"></div>
+        </div>
+        <div class="proj-header">
+          <span class="proj-icon cs-icon">🚀</span>
+        </div>
+        <h3 class="proj-title cs-title">New Project Coming Soon</h3>
+        <p class="proj-desc cs-desc">
+          Something exciting is being built in the lab.<br/>
+          <strong class="neon">Stay Tuned...</strong> ✨
+        </p>
+        <div class="cs-glow-text">LAUNCHING SOON</div>
+      </div>
+    </div>
+
+    <div class="out-dot" id="out-projects"></div>
+  </section>
+
+  <!-- ══ NODE 05 — JOURNEY ══ -->
+  <section id="journey" class="node-section" aria-label="My Journey">
+    <div class="in-dot" id="in-journey"></div>
+    <div class="node-pill reveal">NODE_05 // JOURNEY</div>
+
+    <div class="section-head">
+      <h2 class="reveal">My <span class="neon">Journey</span></h2>
+      <div class="head-line reveal"></div>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-line"></div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-card glass">
+          <div class="tl-year neon mono">2022</div>
+          <h3>Started BCA</h3>
+          <p>Enrolled at Sambalpur University. First lines of code — HTML &amp; C. The journey begins.</p>
+          <div class="tl-tags"><span>HTML</span><span>C Programming</span><span>Logic Building</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-card glass">
+          <div class="tl-year neon mono">2023</div>
+          <h3>Web Development</h3>
+          <p>Learned CSS, Bootstrap, Tailwind, and JavaScript. Built first real projects. Fell in love with the frontend.</p>
+          <div class="tl-tags"><span>CSS</span><span>Bootstrap</span><span>JavaScript</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-dot"></div>
+        <div class="tl-card glass">
+          <div class="tl-year neon mono">2024</div>
+          <h3>Python &amp; Data Science</h3>
+          <p>Deep dive into Python. Started working with pandas, numpy, matplotlib. Built first ML models.</p>
+          <div class="tl-tags"><span>Python</span><span>SQL</span><span>Data Science</span></div>
+        </div>
+      </div>
+
+      <div class="tl-item reveal active-tl">
+        <div class="tl-dot tl-dot-active"></div>
+        <div class="tl-card glass tl-active">
+          <div class="tl-year neon mono">2025 ← NOW</div>
+          <h3>Machine Learning &amp; AI</h3>
+          <p>Final year. Actively learning Deep Learning. Building real projects. <strong class="neon">Seeking opportunities.</strong></p>
+          <div class="tl-tags"><span>Machine Learning</span><span>AI</span><span>Portfolio</span></div>
+          <div class="active-badge">● Currently Active</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="out-dot" id="out-journey"></div>
+  </section>
+
+  <!-- ══ NODE 06 — CONTACT ══ -->
+  <section id="contact" class="node-section" aria-label="Contact">
+    <div class="in-dot" id="in-contact"></div>
+    <div class="node-pill reveal">NODE_06 // CONTACT</div>
+
+    <div class="section-head">
+      <h2 class="reveal">Let's <span class="neon">Connect</span></h2>
+      <div class="head-line reveal"></div>
+      <p class="section-sub reveal">Open to opportunities, collaborations, and conversations.</p>
+    </div>
+
+    <div class="contact-layout">
+      <div class="contact-info glass reveal">
+        <div class="mono neon small-tag">// AVAILABLE FOR WORK</div>
+        <h3 class="contact-name">Priyanshu Kumar Choudhary</h3>
+        <p class="contact-role">Frontend Developer | Part-time Cricketer 🏏</p>
+        <p class="contact-loc"><i class="fas fa-map-marker-alt neon"></i> Sambalpur, Odisha, India</p>
+
+        <div class="socials">
+          <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+            <div>
+              <span class="s-name">LinkedIn</span>
+              <span class="s-handle">@yourusername</span>
+            </div>
+          </a>
+          <a href="https://github.com/yourusername" target="_blank" rel="noopener" class="social-link" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+            <div>
+              <span class="s-name">GitHub</span>
+              <span class="s-handle">@yourusername</span>
+            </div>
+          </a>
+          <a href="https://instagram.com/priyanshu__74" target="_blank" rel="noopener" class="social-link social-ig" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+            <div>
+              <span class="s-name">Instagram</span>
+              <span class="s-handle">@priyanshu__74</span>
+            </div>
+          </a>
+        </div>
+
+        <a href="mailto:priyanshu@example.com" class="email-cta">
+          <i class="fas fa-envelope"></i> priyanshu@example.com
+        </a>
+      </div>
+
+      <div class="contact-form glass reveal">
+        <div class="mono neon small-tag">// SEND A MESSAGE</div>
+        <input type="text" id="formName" placeholder="Your Name" class="f-input" autocomplete="name" />
+        <input type="email" id="formEmail" placeholder="Your Email" class="f-input" autocomplete="email" />
+        <textarea id="formMsg" placeholder="Your message..." class="f-input f-textarea" rows="4"></textarea>
+        <button class="btn-primary btn-block" id="sendBtn" onclick="handleFormSubmit(this)">
+          <i class="fas fa-satellite-dish"></i> Send Signal
+        </button>
+      </div>
+    </div>
+
+    <div class="end-node glass reveal">
+      <div class="mono neon">// END OF PIPELINE</div>
+      <p class="end-msg">Thanks for visiting the workflow ✦</p>
+      <p class="end-sub">Made with passion · Priyanshu Kumar Choudhary · 2025</p>
+    </div>
+  </section>
+</main>
+
+<!-- Back to Top -->
+<button id="backTop" class="back-top" aria-label="Back to top">
+  <i class="fas fa-chevron-up"></i>
+</button>
+
+<!-- ══════════════════════════════════════════════
+     AI ASSISTANT — ROSE 🌹
+══════════════════════════════════════════════ -->
+<div id="roseChat" class="rose-chat" aria-label="AI Assistant Rose">
+  <!-- Toggle Button -->
+  <button id="roseTrigger" class="rose-trigger" aria-label="Chat with Rose">
+    <span class="rose-icon">🌹</span>
+    <span class="rose-ping"></span>
+  </button>
+
+  <!-- Chat Window -->
+  <div id="roseChatBox" class="rose-chatbox" role="dialog" aria-modal="true" aria-label="Rose AI Chat">
+    <div class="rose-header">
+      <div class="rose-avatar">🌹</div>
+      <div class="rose-info">
+        <span class="rose-name">Rose</span>
+        <span class="rose-status"><span class="rose-dot"></span>Online</span>
+      </div>
+      <button id="roseClose" class="rose-close" aria-label="Close chat">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="rose-messages" id="roseMessages">
+      <!-- Initial message injected by JS -->
+    </div>
+
+    <div class="rose-input-area">
+      <input
+        type="text"
+        id="roseInput"
+        placeholder="Ask about Priyanshu..."
+        class="rose-input"
+        autocomplete="off"
+        maxlength="200"
+      />
+      <button id="roseSend" class="rose-send" aria-label="Send">
+        <i class="fas fa-paper-plane"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="script.js"></script>
+</body>
+</html>
