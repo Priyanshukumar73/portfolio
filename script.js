@@ -1035,10 +1035,6 @@ function initRose() {
   }
 
   // ── Call Claude API with Priyanshu's context ─────
-// 🔑 Apni Gemini API Key yahan rakho (config.js mein rakhna safer hai)
-// ── Gemini API with Priyanshu's context ─────
-// ── Gemini API with Priyanshu's context ─────
- // ⚠️ WARNING: API key frontend mein mat rakho production mein
 // ── Gemini API with Priyanshu's context ─────
   const GEMINI_API_KEY = 'AIzaSyAy0YtugSEIRxlqTcEBhJorRkKjzPaUxqU'; // 🔑 Nayi key yahan
 
