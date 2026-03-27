@@ -1036,11 +1036,11 @@ function initRose() {
 
   // ── Call Claude API with Priyanshu's context ─────
 // 🔑 Apni Gemini API Key yahan rakho (config.js mein rakhna safer hai)
-const GEMINI_API_KEY = 'AIzaSyAy0YtugSEIRxlqTcEBhJorRkKjzPaUxqU';
+const GEMINI_API_KEY = 'AIzaSyAqDNjNCcnuPqjHJ6GP5WDuGcAcqL1Z1ZM';
 
 async function askRose(userMessage) {
 
-  if (GEMINI_API_KEY === 'AIzaSyAy0YtugSEIRxlqTcEBhJorRkKjzPaUxqU') {
+  if (GEMINI_API_KEY === 'GEMINI_API_KEY') {
     return "🔑 Gemini API key missing hai! GEMINI_API_KEY mein apni key paste karo.";
   }
 
