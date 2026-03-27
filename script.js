@@ -1039,17 +1039,17 @@ function initRose() {
 // ── Gemini API with Priyanshu's context ─────
 // ── Gemini API with Priyanshu's context ─────
  // ⚠️ WARNING: API key frontend mein mat rakho production mein
-const GEMINI_API_KEY = 'AIzaSyCLrQS1DnGVEL0rHfmkjybq6HUFTN4y-Yg';
+// ── Gemini API with Priyanshu's context ─────
+  const GEMINI_API_KEY = 'AIzaSyAy0YtugSEIRxlqTcEBhJorRkKjzPaUxqU'; // 🔑 Nayi key yahan
 
-async function askRose(userMessage) {
-  try {
-    if (!GEMINI_API_KEY || GEMINI_API_KEY === 'PASTE_YOUR_KEY_HERE') {
-      return "🔑 API key missing hai! Please apni Gemini API key add karo.";
+  async function askRose(userMessage) {
+
+    if (GEMINI_API_KEY === 'YOUR_GEMINI_API_KEY_HERE') {
+      return "🔑 Gemini API key missing hai! GEMINI_API_KEY mein apni key paste karo.";
     }
 
     const systemPrompt = `You are Rose 🌹, a friendly AI assistant on Priyanshu Kumar Choudhary's portfolio.
 Your personality: Warm, encouraging, slightly playful. Use light emojis.
-
 About Priyanshu:
 - BCA Final Year, Sambalpur University, Odisha (2022-2025)
 - Frontend Developer | Part-time Cricketer 🏏
@@ -1059,24 +1059,17 @@ About Priyanshu:
 - Open to: Jobs, Internships, Collaborations
 - Instagram: @priyanshu__74
 - Available for work: YES
-
 Keep answers short (2-4 sentences). If unrelated question, redirect to Priyanshu.`;
 
     const response = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
       {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          contents: [
-            {
-              parts: [
-                { text: `${systemPrompt}\n\nUser: ${userMessage}` }
-              ]
-            }
-          ],
+          contents: [{
+            parts: [{ text: systemPrompt + '\n\nUser: ' + userMessage }]
+          }],
           generationConfig: {
             maxOutputTokens: 300,
             temperature: 0.75
@@ -1086,20 +1079,11 @@ Keep answers short (2-4 sentences). If unrelated question, redirect to Priyanshu
     );
 
     if (!response.ok) {
-      const errorData = await response.json();
-      console.error('Gemini API Error:', errorData);
-      return "⚠️ Rose abhi busy hai... thodi der baad try karo 🌸";
+      console.error('Gemini Error:', await response.json());
+      throw new Error('API error');
     }
 
     const data = await response.json();
-
-    const reply =
-      data?.candidates?.[0]?.content?.parts?.[0]?.text;
-
-    return reply || "Hmm... mujhe samajh nahi aaya 🤔";
-
-  } catch (error) {
-    console.error("Error:", error);
-    return "⚠️ Something went wrong! Please try again later.";
+    return data.candidates?.[0]?.content?.parts?.[0]?.text?.trim()
+           || "I couldn't think of a reply 🌸";
   }
-}
