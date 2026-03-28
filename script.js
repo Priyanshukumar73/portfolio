@@ -1036,13 +1036,15 @@ function initRose() {
 
   // ── Call Claude API with Priyanshu's context ─────
 // ── Gemini API with Priyanshu's context ─────
-  const GEMINI_API_KEY = 'AIzaSyAy0YtugSEIRxlqTcEBhJorRkKjzPaUxqU'; // 🔑 Nayi key yahan
+const GEMINI_API_KEY = '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'; // Paste your real Gemini key
 
-  async function askRose(userMessage) {
+async function askRose(userMessage) {
 
-    if (GEMINI_API_KEY === 'YOUR_GEMINI_API_KEY_HERE') {
-      return "🔑 Gemini API key missing hai! GEMINI_API_KEY mein apni key paste karo.";
-    }
+  if (!GEMINI_API_KEY || !GEMINI_API_KEY.trim()) {
+    return "🔑 Gemini API key missing hai! GEMINI_API_KEY mein apni key paste karo.";
+  }
+  
+  // ... rest of function stays the same
 
     const systemPrompt = `You are Rose 🌹, a friendly AI assistant on Priyanshu Kumar Choudhary's portfolio.
 Your personality: Warm, encouraging, slightly playful. Use light emojis.
